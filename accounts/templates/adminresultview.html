@@ -1,0 +1,80 @@
+{% extends "adminhome.html" %}
+{% block home %}
+{% load static %}
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    table {
+      width: 90%;
+      margin: 80px auto;
+      border-collapse: collapse;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 15px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: red;
+      font-weight: bold;
+    }
+    .table-container {
+      padding: 20px;
+    }
+  </style>
+<h1 class="text-center">Exams</h1>
+
+                <table>
+                
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                    
+                      
+                      <th>Email</th>
+                      <th>Course</th>
+                      <th>Batch</th>
+                     
+                    </tr>
+                    {% for stu in students %}
+                    
+                    <tr>
+                    
+                      <td>{{ forloop.counter }}</td>
+                  
+                      <td><a href="{% url 'scoreadmin' stu.id %}">{{ stu.name }}</a></td>
+             
+                      <td>{{ stu.email }}</td>
+                      <td>{{ stu.Course }}</td>
+                      <td>{{ stu.batch }}</td>
+                
+                    </tr>
+             
+                    {% endfor %}
+                  </table>
+
+
+{% endblock %}
+
+
+

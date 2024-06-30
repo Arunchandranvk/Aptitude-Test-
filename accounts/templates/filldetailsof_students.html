@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <title>Luminar TechnoLab</title>
+        
+		<link rel="shortcut icon" type="image/icon" href="{% static 'assets/logo/logo.png' %}"/>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https:code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https:stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https:stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'assets/css/det.css' %}">
+  </head> 
+  <body>
+
+  <div class="page">
+    <div class="row" style="width: 100%;">
+        <div class="col-1">
+            <img  src="{% static 'assets/logo/logo.png' %}" alt="" style="height: 150px;margin-left: 480px;padding: 10px;">
+
+        </div>
+        <div class="col">
+            <h1 class="text-center" style="padding: 50px 50px;color:#6C1296;">Luminar Technolab </h1>
+
+        </div>
+    </div>
+    {% block exam %}
+    <div class="container " style="margin-top: 40px;">
+      <form class="content" method="post">
+
+        <!-- <div class="lock-image">
+          <svg width="60" height="60" viewBox="0 0 200 200" fill="none" xmlns="http:www.w3.org/2000/svg">
+            <ellipse cx="69.1606" cy="78.2663" rx="53.5" ry="66.5" transform="rotate(15.3101 69.1606 78.2663)" fill="#D9D9D9" />
+            <path d="M46.0855 71.5272L39.1408 58.5438C36.535 53.6723 38.3733 47.6107 43.2461 45.0072L59.4961 36.325C64.3669 33.7226 70.4252 35.5611 73.0281 40.4317L79.9688 53.4191" stroke="white" stroke-width="5" />
+            <rect x="35.8906" y="76.5552" width="63" height="54" rx="10" transform="rotate(-28.121 35.8906 76.5552)" fill="#ED9A1F" />
+            <circle cx="74.7485" cy="82.4342" r="6.5" transform="rotate(-28.121 74.7485 82.4342)" fill="black" />
+            <path d="M80.6709 94.5762L72.6582 79.583" stroke="black" stroke-width="5" stroke-linecap="round" />
+          </svg>
+        </div> -->
+
+        <h2 class="heading">Enter Your Details</h2>
+        {% csrf_token %}
+        <div class="row" style="width: 100%;">
+            <div class="col">
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">Name :</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">Email :</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                </div>
+            </div>
+        </div>
+        <div class="row" style="width:100%;">
+            <div class="col">
+                <div class="form-group">
+                    <label for="{{ form.course.id_for_label }}">Course :</label>
+                    <select name="course" id="course" class="form-control">
+                        {% for cou in course %}
+                            <option value="{{ cou.id }}">{{ cou.course }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="{{ form.batch.id_for_label }}">Batch :</label>
+                    <select name="batch" id="batch" class="form-control">
+                        {% for batch in batch %}
+                            <option value="{{ batch.id }}">{{ batch.batch }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="number" name="set" id="set" value="{{set.id}}" hidden>
+<!--         
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"> 
+                <div class="text-center mt-2">
+                    <button type="submit" class="btn btn-info btn-block">Submit</button>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div> -->
+                 
+        <div class="validation-list" style="margin:10px;">
+
+          <span class="mb-3" style="font-style: italic;font-weight: bold;" >Thank you for showing interest in Luminar Technolab Pvt Ltd. We hope you have a great time taking this assessment. Answer the questions within this assessment to the best of your ability.</span>
+          <ul class="validation-items mt-3">
+            <li class="validation-item">
+              <span class="validation-item-dot-1"></span>
+              <span class="validation-item-check-1">&#10003;</span>
+              <span class="validation-item-text">Take up this assessment on a laptop or desktop rather than on a mobile phone.</span>
+            </li>
+            <li class="validation-item">
+              <span class="validation-item-dot-2"></span>
+              <span class="validation-item-check-2">&#10003;</span>
+              <span class="validation-item-text">Close all other applications and browser tabs to ensure no distractions.</span>
+            </li>
+            <li class="validation-item">
+              <span class="validation-item-dot-3"></span>
+              <span class="validation-item-check-3">&#10003;</span>
+              <span class="validation-item-text">Block time to start and finish the assessment in one go. Please make sure you are not interrupted.</span>
+            </li>
+          </ul>
+        </div>
+
+        <button class="button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+  {% endblock %}
+
+  </body>
+</html>

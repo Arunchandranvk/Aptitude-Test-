@@ -1,0 +1,27 @@
+{% extends 'addstudent.html' %}
+{% block details  %}
+
+<style>
+.card{
+    margin-top: 10px;
+}
+ .card .item{
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+}
+</style>
+<div class="text-center">
+    <a href="{% url 'addquestion' cat.id %}" class="btn-info"  style="margin-top: 5px; float:right ;padding: 8px 16px;color: white;border-radius: 0.75rem;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: medium;">Add Questions</a>
+</div>
+        <div class="text-center">
+            <h1 class="mr-2 ml-1 mt-3" style=" letter-spacing: 2px;font-family:fantasy;" >  {{cat.cat}} Questions</h1>
+        </div>
+        <div class="card">
+                {% for question in ques %}
+                    <p class="item">{{forloop.counter}} . {{question.question}} <a href="{% url 'delque' question.id %}" class="btn-danger"  style="font-size: medium; margin-top: -5px; float:right;padding: 5px 12px;color: white;border-radius: 0.75rem;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Delete</a></p>
+                {% endfor %}
+          </div>
+        
+{% endblock details  %}

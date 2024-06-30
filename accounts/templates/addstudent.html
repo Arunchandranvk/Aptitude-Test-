@@ -1,0 +1,254 @@
+{% extends 'adminhome.html' %}
+{% block home %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'assets/css/student.css' %}">
+
+<style>
+    .card{
+        margin-top: 10px;
+    }
+    .card .item{
+        padding: 15px;
+        margin-top: 10px;
+        background-color: #f8f9fa;
+        border-radius: 0.75rem;
+    }
+    
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.card table tr th{
+    text-align: center;
+}
+.card .item table tr td{
+    text-align: center;
+}
+</style>
+  
+<div class="containers">
+    <div class="column-small">
+        <div class="card">
+            <p class="item"><a href="{% url 'addstu' %}">Students</a></p>
+            <p class="item"><a href="{% url 'catall' %}">Exam Categories</a></p>
+            <p class="item"><a href="{% url 'exam' %}">Exams</a></p>
+            <p class="item"><a href="{% url 'machinetest' %}"> Machine Test</a></p>
+            <p class="item"><a href="{% url 'batch' %}"> Batches</a></p>
+            <p class="item"><a href="{% url 'cou' %}"> Courses</a></p>
+            <!-- // {% comment %} <p class="item"><a href="{% url 'trainer' %}"> Trainers</a></p> {% endcomment %} -->
+        </div>
+    </div>
+    <div class="column-big">
+        {% block details %}
+      
+        <!-- // <div class="custom-form mt-5">
+        //     <form action="" method="POST" enctype="multipart/form-data">
+        //         {% csrf_token %}
+        //         <div class="form-group">
+        //             <label for="{{ form.name.id_for_label }}">Name :</label>
+        //             <input type="text" name="name" id="name" class="form-control">
+        //         </div>
+        
+        //      
+        //         <div class="form-group">
+        //             <label for="{{ form.email.id_for_label }}">Email :</label>
+        //             <input type="email" name="email" id="email" class="form-control">
+        //         </div>
+        //         <div class="form-group">
+        //             <label for="{{ form.course.id_for_label }}">Course :</label>
+        //             <select name="course" id="course" class="form-control">
+        //                 {% for cou in course %}
+        //                     <option value="{{ cou.id }}">{{ cou.course }}</option>
+        //                 {% endfor %}
+        //             </select>
+        //         </div>
+        
+        //        
+        //         <div class="form-group">
+        //             <label for="{{ form.batch.id_for_label }}">Batch :</label>
+        //             <select name="batch" id="batch" class="form-control">
+        //                 {% for batch in batch %}
+        //                     <option value="{{ batch.id }}">{{ batch.batch }}</option>
+        //                 {% endfor %}
+        //             </select>
+        //         </div>
+        
+        //         <div class="form-group">
+        //             <label for="{{ form.trainer.id_for_label }}">Trainer : </label>
+        //             <select name="trainer" id="trainer" class="form-control">
+        //                 {% for trainer in trainer %}
+        //                     <option value="{{ trainer.id }}">{{ trainer.trainer }}</option>
+        //                 {% endfor %}
+        //             </select>
+        //         </div>
+        
+        //         <div class="text-center mt-2">
+        //             <button type="submit" class="btn btn-success">Confirm</button>
+        //         </div>
+        //     </form>
+        // </div> -->
+
+        <div class="text-center">
+            <h1 class="mr-2 ml-1 mt-3" style="letter-spacing: 2px; font-family: fantasy;">Students</h1>
+        </div>
+        <div class="card" style="margin-left: 10px;">
+            <table >
+                <colgroup>
+                    <col style="width: 50px;">
+                    <col style="width: 150px;">
+                    <col style="width: 250px;">
+                    <col style="width: 350px;">
+                    <col style="width: 250px;">
+                    <col style="width: 150px;">
+                </colgroup>
+                <tr >
+                    <th >No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Batch</th>
+                    <th>Exam</th>
+                </tr>
+            </table>
+            {% for i in stu %}
+            <div class="item">
+                <!-- <button id="myBtn_{{ forloop.counter }}" class="item"> -->
+                    <table>
+                        <colgroup>
+                            <col style="width: 50px;">
+                            <col style="width: 150px;">
+                            <col style="width: 250px;">
+                            <col style="width: 350px;">
+                            <col style="width: 250px;">
+                            <col style="width: 150px;">
+                        </colgroup>
+                        <!-- <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Course</th>
+                            <th>Batch</th>
+                            <th>Exam</th>
+                        </tr> -->
+                        <tr>
+                            <td>{{ forloop.counter }} .</td>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.email }}</td>
+                            <td>{{ i.course }}</td>
+                            <td>{{ i.batch }}</td>
+                            <td>{{ i.set.examname }}</td>
+                        </tr>
+                    </table>
+                </div>
+                       <!-- </button> <br> -->
+                <!-- <div id="myModal_{{ forloop.counter }}" class="modal">
+                    
+                    <div class="modal-content">
+                        <span class="close" data-modal-id="myModal_{{ forloop.counter }}">&times;</span>
+                        <h1 style="margin-bottom: 10px;">Add Categories to Student</h1>
+                        <form method="post" action="{% url 'assignexam' i.id %}">
+                            {% csrf_token %}
+                            {% for category in cat %}
+                                <input type="checkbox" name="categories" value="{{ category.id }}" id="category_{{ category.id }}">
+                                <label for="category_{{ category.id }}">{{ category.cat }}</label><br>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-info">Save</button>
+                        </form>
+                    </div> 
+                </div>-->
+            {% endfor %}
+        </div>
+     
+        {% endblock details %}
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+       {% if messages %}
+           {% for message in messages %}
+                alert('{{ message }}');
+           {% endfor %}
+       {% endif %}
+     });
+   </script>
+<script>
+
+ 
+
+
+    // Function to open the modal
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+    
+    // Function to close the modal
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+    
+    // Get all buttons that open the modal
+    var buttons = document.querySelectorAll("[id^=myBtn_]");
+    
+    // Get all <span> elements that close the modal
+    var spans = document.querySelectorAll(".close");
+    
+    // Assign click events to open the corresponding modal
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            var modalId = button.id.replace("myBtn_", "myModal_");
+            openModal(modalId);
+        });
+    });
+    
+    // Assign click events to close the corresponding modal
+    spans.forEach(span => {
+        span.addEventListener("click", function() {
+            var modalId = span.getAttribute("data-modal-id");
+            closeModal(modalId);
+        });
+    });
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeModal(event.target.id);
+        }
+    }
+</script>
+{% endblock %}

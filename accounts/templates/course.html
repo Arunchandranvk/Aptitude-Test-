@@ -1,0 +1,39 @@
+{% extends 'addstudent.html' %}
+{% block details  %}
+
+<style>
+.card{
+    margin-top: 10px;
+}
+ .card .item{
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+}
+</style>
+
+
+    <div class="custom-form ">
+            <form action="" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">Course :</label>
+                    <input type="text" name="course" id="course" class="form-control">
+                </div>
+                <div class="text-center mt-2">
+                     <button type="submit" class="btn btn-success">Confirm</button>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <h1 class="mr-2 ml-1 mt-3" style=" letter-spacing: 2px;font-family:fantasy;" >  Courses</h1>
+        </div>
+        <div class="card">
+                {% for i in course %}
+                    <p class="item">{{forloop.counter}} . {{i.course}}</p>
+                {% endfor %}
+          </div>
+
+
+{% endblock details  %}

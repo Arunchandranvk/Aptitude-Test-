@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 15px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+  .incorrect {
+    color: red;
+    font-weight: bold;
+  }
+  .table-container {
+    padding: 20px;
+  }
+</style>
+  </head>
+  <body>
+
+
+<div class="table-container" >
+  <table>
+    <tr>
+      <th colspan="4">Total Score : {{score.score}}</th>
+    </tr>
+    <tr>
+      <th>No.</th>
+      <th>Question</th>
+    
+      
+      <th>Submitted Answer</th>
+      <th>Correct Answer</th>
+      <th></th>
+     
+    </tr>
+    {% for i in ans %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.question.question }}</td>
+      
+      <td>
+        {% if i.is_correct %}
+        <span class="correct">{{ i.ans }}</span>
+        {% else %}
+        <span class="incorrect">{{ i.ans }}</span>
+        {% endif %}
+      </td>
+      <td>{{ i.question.correct_ans }}</td>
+      {% if i.question.solution %}
+      <td><img src="{{i.question.solution.url}}" alt=""></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    {% if messages %}
+    {% for message in messages %}
+    alert('{{ message }}');
+    {% endfor %}
+    {% endif %}
+  });
+</script>
+  </body>
+</html>

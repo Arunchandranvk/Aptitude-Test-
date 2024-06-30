@@ -1,0 +1,78 @@
+{% extends "adminhome.html" %}
+{% block home %}
+{% load static %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  table {
+    width: 90%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 15px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+  .incorrect {
+    color: red;
+    font-weight: bold;
+  }
+  .table-container {
+    padding: 20px;
+  }
+</style>
+
+<div class="table-container" style="margin-top: 50px;">
+  <table>
+    
+    <tr>
+      <th>No.</th>
+      <th>Category</th>
+    
+      
+      <th>Score</th>
+    </tr>
+    {% for i in result %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.cat.cat }}</td>
+      
+      <td>{{i.score}}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    {% if messages %}
+    {% for message in messages %}
+    alert('{{ message }}');
+    {% endfor %}
+    {% endif %}
+  });
+</script>
+{% endblock %}

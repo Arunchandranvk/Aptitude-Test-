@@ -1,0 +1,56 @@
+{% extends "examattendingpage.html" %}
+{% block attend %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+<link rel="stylesheet" href="{% static 'assets/css/exam.css' %}">
+<div class="quiz-scroll-container" style="margin-top:50px;">
+
+<div class="quiz-container" id="quiz" >
+
+  
+  <form action="{% url 'submit_quiz' category.id  %}" method="post"> <!-- Replace 'submit_quiz' with your actual URL name -->
+    {% csrf_token %}
+     {% for ques in questions %}
+   
+    <h2 id="question" class="question-text">{{forloop.counter}} . {{ ques.question }}</h2>
+    <div class="loading-bar">
+      <div class="loading-bar-progress" id="loading-bar-progress"></div>
+    </div>
+    <ul>
+      <li>
+        <input type="radio" name="answer{{ forloop.counter }}" id="a{{ forloop.counter }}" class="answer" value="{{ ques.ans1 }}">
+        <label for="a{{ forloop.counter }}" id="a_text{{ forloop.counter }}">A . {{ ques.ans1 }}</label>
+      </li>
+      <li>
+        <input type="radio" name="answer{{ forloop.counter }}" id="b{{ forloop.counter }}" class="answer" value="{{ ques.ans2 }}">
+        <label for="b{{ forloop.counter }}" id="b_text{{ forloop.counter }}">B . {{ ques.ans2 }}</label>
+      </li>
+      <li>
+        <input type="radio" name="answer{{ forloop.counter }}" id="c{{ forloop.counter }}" class="answer" value="{{ ques.ans3 }}">
+        <label for="c{{ forloop.counter }}" id="c_text{{ forloop.counter }}">C . {{ ques.ans3 }}</label>
+      </li>
+      <li>
+        <input type="radio" name="answer{{ forloop.counter }}" id="d{{ forloop.counter }}" class="answer" value="{{ ques.ans4 }}">
+        <label for="d{{ forloop.counter }}" id="d_text{{ forloop.counter }}">D . {{ ques.ans4 }}</label>
+      </li>
+    </ul>
+    <input type="hidden" name="question_id{{ forloop.counter }}" value="{{ ques.id }}">
+    
+    {% endfor %}
+    <div>
+      <button type="submit" class="button">Submit</button>
+    </div>
+  </form>
+</div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      {% if messages %}
+          {% for message in messages %}
+              alert('{{ message }}');
+          {% endfor %}
+      {% endif %}
+  });
+</script>
+{% endblock attend %}

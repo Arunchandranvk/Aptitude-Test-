@@ -1,0 +1,100 @@
+{% extends 'addstudent.html' %}
+{% block details  %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<style>
+.card{
+    margin-top: 10px;
+}
+ .card .item{
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+}
+table {
+    width: 95%;
+    
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 15px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: black;
+    font-weight: bolder;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+    color: rgba(0, 0, 0, 0.766);
+  }
+  tr:hover {
+    background-color: #f1f1f1;
+    color: rgba(0, 0, 0, 0.766);
+  }
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+  .incorrect {
+    color: red;
+    font-weight: bold;
+  }
+  .table-container {
+    padding: 20px;
+  }
+</style>
+    
+        <div class="text-center">
+            <h1 class="mr-2 ml-1 mt-3" style=" letter-spacing: 2px;font-family:fantasy;" >Exam Details</h1>
+        </div>
+        <div class="card">
+                    <p class="item">Name Of Exam : {{examset.examname}}</p>
+                    {% for exams in examset.cat.all %}
+                        <p class="item">Exam  {{forloop.counter}} : <a href="{% url 'question' exams.id %}" style="font-weight: bolder;font-style: italic;"> {{exams.cat}} </a></p>
+                    {% endfor %}
+                    <p class="item">Duration : {{examset.duration}}</p>
+                    <p class="item">Link : <a href="{{ examset.exam_link }}" style="margin-right: 10px;">{{examset.exam_link}}</a></p>
+                    <p class="item" style=" font-weight: bolder;text-align: center;">Attended Students : {{count}}</p>
+          </div>
+
+
+          
+<div class="table-container" style="margin-top: 50px;">
+    <table>
+
+      <tr>
+        <th>No.</th>
+        <th>Name</th>
+      
+        
+        <th>Email</th>
+        <th>Batch</th>
+        <th>Course</th>
+       
+      </tr>
+      {% for i in students %}
+      
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'result' i.id %}" style="text-decoration: none;font-style: italic;font-weight: bold;font-size:medium;">{{ i.name }}</a></td>
+        
+        <td>
+        {{i.email}}
+        </td>
+        <td>{{ i.batch }}</td>
+        <td>{{i.course}}</td>
+      </tr>
+ 
+      {% endfor %}
+    </table>
+  </div>
+        
+
+{% endblock details  %}

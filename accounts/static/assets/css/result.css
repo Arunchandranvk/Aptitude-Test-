@@ -1,0 +1,254 @@
+@media (max-width: 1000px) {
+    .container {
+      flex-direction: column;
+    }
+  }
+  
+  body {
+    /* font */
+    font-family: "Hanken Grotesk";
+    /* alignment */
+    margin: 0;
+    display: grid;
+    place-content: center;
+    /* sizes */
+    min-height: 100vh;
+    /* color */
+    background-color: hsl(217, 54%, 11%);
+    
+  }
+  
+  p {
+    font-size: 18px;
+  }
+  
+  /*
+  -----------
+  ¦left side¦
+  ----------- 
+  */
+  
+  .container {
+    /* alignment */
+    display: flex;
+    /* sizes */
+    border-radius: 25px;
+  
+    /* colors */
+    background-color: white;
+    box-shadow: 0px 0px 30px 20px black;
+  }
+  
+  .container-left {
+    /* alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    /* sizes */
+    border-radius: 15px;
+    width: 100px;
+    /* colors */
+    background: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%) 80%);
+  }
+  
+  .title {
+    /* font */
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .title-left {
+    /* alignment */
+    margin: 37px auto;
+    /* colors */
+    color: rgba(255, 255, 255, 0.692);
+  }
+  
+  .circle {
+    /* alignment */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -3px;
+    /* sizes */
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    /* colors */
+    background: linear-gradient(hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0));
+  }
+  
+  .circle-score {
+    /* alignment */
+    margin-bottom: -6px;
+    /* font */
+    font-size: 70px;
+    font-weight: 800;
+    /* colors */
+    color: white;
+  }
+  
+  .circle-out-of {
+    /* font */
+    font-weight: 500;
+    /* colors */
+    color: hsla(0, 0%, 100%, 0.404);
+  }
+  
+  .container-left-bottom {
+    /* alignment */
+    margin: auto 50px;
+  }
+  
+  .container-left-bottom-compliment {
+    /* alignment */
+    margin-bottom: -6px;
+  
+    /* font */
+    font-weight: 700;
+    font-size: 32px;
+  
+    /* colors */
+    color: white;
+  }
+  
+  .container-left-bottom-description {
+    /* colors */
+    color: hsla(0, 0%, 100%, 0.61);
+  }
+  
+  /*
+  ------------
+  ¦right side¦
+  ------------ 
+  */
+  
+  .container-right-box {
+    /* alignment */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container-right {
+    /* alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    /* sizes */
+    height: 812px;
+  }
+  
+  .title-right {
+    /* alignment */
+    text-align: left;
+    margin-top: -3px;
+    /* sizes */
+    width: 488px;
+    /* colors */
+    color: hsl(224, 30%, 27%);
+  }
+  
+  .stat-box {
+    /* alignment */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: -50px;
+  }
+  
+  .stat {
+    /* font */
+    font-size: 18px;
+    font-weight: 500;
+    /* alignment */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 70px;
+    margin: 8px 40px;
+    /* sizes */
+    width: 1488px;
+    height: 550px;
+    border-radius: 10px;
+  }
+  
+  .stat-part-left {
+    /* alignment */
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .stat-part-right {
+    /* font */
+    font-weight: 700;
+    /* colors */
+    color: hsla(224, 30%, 27%, 0.514);
+  }
+  
+  .stat-reaction {
+    background-color: hsla(0, 100%, 67%, 0.068);
+  }
+  
+  .stat-verbal {
+    background-color: hsl(166, 100%, 37%, 0.068);
+  }
+  
+  .stat-visual {
+    background-color: hsla(234, 85%, 45%, 0.068);
+  }
+  
+  .stat-memory {
+    background-color: hsl(39, 100%, 56%, 0.068);
+  }
+  
+  .red {
+    color: hsl(0, 100%, 67%);
+  }
+  
+  .blue {
+    color: hsl(224, 30%, 27%);
+  }
+  
+  .yellow {
+    color: hsl(39, 100%, 56%);
+  }
+  
+  .purple {
+    color: hsl(234, 85%, 45%);
+  }
+  
+  .green {
+    color: hsl(166, 100%, 37%);
+  }
+  
+  .btn {
+    /* font */
+    font-size: 18px;
+    font-weight: 500;
+    /* alignment */
+    margin-top: -45px;
+    /* sizes */
+    border: none;
+    width: 188px;
+    height: 55px;
+    border-radius: 30px;
+    /* colors */
+    color: white;
+    background-color: hsl(224, 30%, 27%);
+  }
+  
+  .btn:hover {
+    background: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%) 80%);
+    cursor: pointer;
+  }
+
+ .container-right-box{
+    height: 70vh; /* Adjust as needed */
+    overflow-y: auto;
+  }

@@ -1,0 +1,83 @@
+{% extends 'addstudent.html' %}
+{% block details  %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% load custom_tags %}
+<style>
+.card{
+    margin-top: 10px;
+}
+ .card .item{
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+}
+
+.centered-text {
+    font-weight: bolder;
+
+    margin-left: 400px;
+    height: 100%;
+}
+</style>
+
+
+    <div class="custom-form ">
+            <h1 style="margin-bottom: 20px;">Create Set Of Exam</h1>
+                        <form method="post" action="{% url 'createexam'  %}">
+                            {% csrf_token %}
+                            <input type="text" name="examname" id="examname" class="form-control" placeholder="Exam Name"><br>
+                            <div class="row" >
+                                {% for category in cat %}
+                                <div style="display: inline-block; margin-left: 20px;padding: 20px;"> <!-- Adjust margin-right as needed -->
+                                    <input type="checkbox" name="categories" value="{{ category.id }}" id="category_{{ category.id }}">
+                                    <label for="category_{{ category.id }}">{{ category.cat }}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                           
+                            <button type="submit" class="btn btn-info">Save</button>
+                        </form>
+        </div>
+        <div class="text-center">
+            <h1 class="mr-2 ml-1 mt-3" style=" letter-spacing: 2px;font-family:fantasy;" >  Exams</h1>
+        </div>
+        <div class="card">
+            {% for i in exam %}
+                <p class="item">{{ forloop.counter }}. {{ i.examname }}
+                    <span class="centered-text">Attended Students: {{ exam_counts|get_item:i.id }}</span>
+                    <span class="exam-link" data-link="{{ i.exam_link }}" style="float: right;">
+                        <a href="{% url 'detexamset' i.id %}" style="margin-right: 10px;margin-bottom: 15px;">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{% url 'delexamset' i.id %}" style="margin-right: 10px;margin-bottom: 15px;">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                        <a href="{{ i.exam_link }}" style="margin-right: 10px;">
+                            <i class="fa-solid fa-link"></i>
+                        </a>
+                        <button class="copy-button">
+                            <span class="material-symbols-outlined">content_copy</span>
+                        </button>
+                    </span>
+                </p>
+            {% endfor %}
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const copyButtons = document.querySelectorAll('.copy-button');
+        
+                copyButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const link = this.parentElement.dataset.link;
+                        navigator.clipboard.writeText(link).then(function() {
+                            alert('Link copied to clipboard: ' + link);
+                        }, function(err) {
+                            console.error('Could not copy link: ', err);
+                        });
+                    });
+                });
+            });
+        </script>
+{% endblock details  %}

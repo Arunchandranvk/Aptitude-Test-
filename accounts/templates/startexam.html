@@ -1,0 +1,71 @@
+{% extends 'filldetailsof_students.html' %}
+{% block exam  %}
+<style>
+.card{
+    margin: 20px;
+}
+ .card {
+    padding: 15px;
+    margin-top: 5px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+    font-weight: bold;
+ }
+ .card .items{
+    padding: 5px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+    font-weight: bolder;
+ }
+ .cards{
+    width: 700px;
+    padding: 15px;
+    margin: 10px 400px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    float: center;
+ }
+.item {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.label {
+    margin-right: 5px; /* Adjust the spacing as needed */
+    min-width: 100px; /* Optional: to align the colons vertically */
+    font-weight: bolder;
+}
+
+
+
+</style>
+<div>
+    <h4 style="margin-left: 20px;"><span class="label">Exam</span> <span style="font-style: italic;">:&nbsp;&nbsp;{{student.set.examname}}</span> <span style="float: right;margin-right: 20px;">Duration : {{student.set.duration}} hrs</span></h4>
+</div>
+<div class="card">
+    <p class="item"><span class="label">Name</span> <span>:&nbsp;&nbsp;{{student.name}}</span></p>
+    <p class="item"><span class="label">Email</span> <span>:&nbsp;&nbsp;{{student.email}}</span></p>
+    <p class="item"><span class="label">Course</span> <span>:&nbsp;&nbsp;{{student.course}}</span></p>
+    <p class="item"><span class="label">Batch</span> <span>:&nbsp;&nbsp;{{student.batch}}</span></p>
+</div>
+{% block startexam %}
+
+<div class="cards">
+    {% for i in  set.cat.all %}
+    <p class="items">{{forloop.counter}} . {{i.cat}}</p>
+    {% endfor %}
+</div>
+
+<div class="row" style="width: 100%;">
+    <div class="col"></div>
+    <div class="col">
+    <button class="button mt-5">  <a href="{% url 'attexam' student.id %}" class=" btn-block text-white" style="text-decoration: none;">Start Exam</a></button>  
+
+    </div>
+    <div class="col"></div>
+</div>
+
+{% endblock startexam  %}
+{% endblock exam  %}

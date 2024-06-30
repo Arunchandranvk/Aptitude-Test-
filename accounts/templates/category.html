@@ -1,0 +1,38 @@
+{% extends 'addstudent.html' %}
+{% block details  %}
+
+<style>
+.card{
+    margin-top: 10px;
+}
+ .card .item{
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+}
+</style>
+
+
+    <div class="custom-form ">
+            <form action="" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.cat.id_for_label }}">Exams :</label>
+                    <input type="text" name="cat" id="cat" class="form-control">
+                </div>
+                <div class="text-center mt-2">
+                     <button type="submit" class="btn btn-success">Confirm</button>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <h1 class="mr-2 ml-1 mt-3" style=" letter-spacing: 2px;font-family:fantasy;" >  Categories</h1>
+        </div>
+        <div class="card">
+                {% for i in cat %}
+                    <p class="item"><a href="{% url 'aptitude' i.id %}"> {{forloop.counter}} . {{i.cat}}</a> <a href="{% url 'delexam' i.id %}" class="btn-danger"  style="font-size: medium;float:right;padding: 5px 12px;color: white;border-radius: 0.75rem;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> Delete</a></p>
+                {% endfor %}
+        </div>
+
+{% endblock details  %}

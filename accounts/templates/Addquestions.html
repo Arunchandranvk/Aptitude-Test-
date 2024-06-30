@@ -1,0 +1,105 @@
+{% extends 'addstudent.html' %}
+{% block details %}
+
+<style>
+.custom-forms {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    padding: 5px 5px;
+}
+</style>
+
+<div class="custom-forms">
+    <label for="num_forms">Number of Questions:</label>
+    <input type="number" id="num_forms" name="num_forms" value="3" min="1" max="10" />
+    <button id="update_forms" class="btn btn-primary">Update</button>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div class="form-group">
+                <label for="{{ form.question.id_for_label }}">Question {{forloop.counter}}:</label>
+                <!-- <textarea name="{{ form.prefix }}-question" id="{{ form.prefix }}-question" placeholder="Question" class="form-control"></textarea> -->
+                 {{form.question.errors}}
+                 {{form.question}}
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <!-- <input type="text" name="{{ form.prefix }}-ans1" class="form-control" placeholder="Option 1"> -->
+                         {{form.ans1.errors}}
+                         {{form.ans1}}
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <!-- <input type="text" name="{{ form.prefix }}-ans2" class="form-control" placeholder="Option 2"> -->
+                         {{form.ans2.errors}}
+                         {{form.ans2}}
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <!-- <input type="text" name="{{ form.prefix }}-ans3" class="form-control" placeholder="Option 3"> -->
+                         {{form.ans3.errors}}
+                         {{form.ans3}}
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <!-- <input type="text" name="{{ form.prefix }}-ans4" class="form-control" placeholder="Option 4"> -->
+                         {{form.ans4.errors}}
+                         {{form.ans4}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        <!-- <input type="text" name="{{ form.prefix }}-correct_ans" class="form-control" placeholder="Correct Answer"> -->
+                         {{form.correct_ans.errors}}
+                         {{form.correct_ans}}
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <!-- <label for="{{ form.prefix }}-solution" style="margin: 10px 30px;">Solution :</label> -->
+                     {{form.solution.errors}}
+                     {{form.solution}}
+                </div>
+                <!-- <div class="col-lg-5">
+                    <div class="form-group">
+                        <input type="file" name="{{ form.prefix }}-solution" id="{{ form.prefix }}-solution" class="form-control" placeholder="Solution">
+                    </div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <input type="text" name="{{ form.prefix }}-category" id="" value="{{ category.id }}" hidden>
+                {{form.category.errors}}
+            </div>
+        {% endfor %}
+        
+        <div class="text-center mt-2">
+            <button type="submit" class="btn btn-success">Confirm</button>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('#update_forms').on('click', function(e) {
+        e.preventDefault();
+        var numForms = $('#num_forms').val();
+        var url = new URL(window.location.href);
+        url.searchParams.set('num_forms', numForms);
+        window.location.href = url.toString();
+    });
+</script>
+{% endblock details %}

@@ -1,0 +1,344 @@
+{% extends 'filldetailsof_students.html' %}
+{% block exam %}
+<style>
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+i {
+    margin-right: 10px;
+}
+
+/*----------bootstrap-navbar-css------------*/
+.navbar-logo {
+    padding: 15px;
+    color: #fff;
+}
+
+.navbar-mainbg {
+    background-color: #6C1296;
+    padding: 0px;
+    margin-top: 25px;
+}
+
+#navbarSupportedContent {
+    overflow: hidden;
+    position: relative;
+}
+
+#navbarSupportedContent ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+#navbarSupportedContent ul li a i {
+    margin-right: 10px;
+}
+
+#navbarSupportedContent li {
+    list-style-type: none;
+    float: left;
+}
+
+#navbarSupportedContent ul li a {
+    color: rgba(255, 255, 255, 0.767);
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding: 20px 20px;
+    transition-duration: 0.6s;
+    position: relative;
+    margin-right: 10px;
+}
+
+#navbarSupportedContent ul li a:hover {
+    background-color: white;
+    color: black;
+    border-radius: 0.75rem;
+}
+
+#navbarSupportedContent>ul>li.active>a {
+    color: black;
+    font-weight: bolder;
+    background-color: transparent;
+    transition: all 0.7s;
+}
+
+#navbarSupportedContent a:not(:only-child):after {
+    content: "\f105";
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 14px;
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+    transition: 0.5s;
+}
+
+#navbarSupportedContent .active>a:not(:only-child):after {
+    transform: rotate(90deg);
+}
+
+.hori-selector {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background-color: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 10px;
+}
+
+.hori-selector .right,
+.hori-selector .left {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    bottom: 10px;
+}
+
+.hori-selector .right {
+    right: -25px;
+}
+
+.hori-selector .left {
+    left: -25px;
+}
+
+.hori-selector .right:before,
+.hori-selector .left:before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #6C1296;
+}
+
+.hori-selector .right:before {
+    bottom: 0;
+    right: -25px;
+}
+
+.hori-selector .left:before {
+    bottom: 0;
+    left: -25px;
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-custom {
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+
+    .navbar-expand-custom .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-expand-custom .navbar-collapse {
+        display: -ms-flexbox!important;
+        display: flex!important;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    #navbarSupportedContent ul li a {
+        padding: 12px 30px;
+    }
+
+    .hori-selector {
+        margin-top: 0px;
+        margin-left: 10px;
+        border-radius: 0;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+
+    .hori-selector .left,
+    .hori-selector .right {
+        right: 10px;
+    }
+
+    .hori-selector .left {
+        top: -25px;
+        left: auto;
+    }
+
+    .hori-selector .right {
+        bottom: -25px;
+    }
+
+    .hori-selector .left:before {
+        left: -25px;
+        top: -25px;
+    }
+
+    .hori-selector .right:before {
+        bottom: -25px;
+        left: -25px;
+    }
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 80%;
+    max-width: 1000px;
+    margin-top: 20px;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.instructions {
+    margin-bottom: 20px;
+}
+
+.time {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.footer {
+    font-weight: bold;
+}
+#timer {
+    float: right;
+    margin-right: 20px;
+    font-weight: bolder;
+    font-style: italic;
+    color: red;
+    animation: brightening 1s infinite alternate;
+}
+</style>
+
+
+<div style="float: right;margin-right: 20px;font-weight: bolder;font-style: italic;"  id="timer" >
+    {% comment %} {{ set.duration }} hrs {% endcomment %}
+</div>
+
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+    <a class="navbar-brand navbar-logo" href="#" style="font-weight: bolder;font-style: italic;">{{ set.examname }}</a>
+    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+    </button>
+</nav>
+
+<div>
+    {% block attend %}
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'assets/css/exam.css' %}">
+    <div class="quiz-scroll-container" style="margin-top:50px;">
+        <div class="quiz-container" id="quiz">
+            <form action="{% url 'submit_quiz' student.id %}" method="post" id="exam-form">
+                {% csrf_token %}
+                {% for ques in questions %}
+                <h2 id="question" class="question-text">{{ forloop.counter }} . {{ ques.question }}</h2>
+                <div class="loading-bar">
+                    <div class="loading-bar-progress" id="loading-bar-progress"></div>
+                </div>
+                <ul>
+                    <li>
+                        <input type="radio" name="answer{{ ques.id }}" id="a{{ ques.id }}" class="answer" value="{{ ques.ans1 }}">
+                        <label for="a{{ ques.id }}" id="a_text{{ ques.id }}">A . {{ ques.ans1 }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer{{ ques.id }}" id="b{{ ques.id }}" class="answer" value="{{ ques.ans2 }}">
+                        <label for="b{{ ques.id }}" id="b_text{{ ques.id }}">B . {{ ques.ans2 }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer{{ ques.id }}" id="c{{ ques.id }}" class="answer" value="{{ ques.ans3 }}">
+                        <label for="c{{ ques.id }}" id="c_text{{ ques.id }}">C . {{ ques.ans3 }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer{{ ques.id }}" id="d{{ ques.id }}" class="answer" value="{{ ques.ans4 }}">
+                        <label for="d{{ ques.id }}" id="d_text{{ ques.id }}">D . {{ ques.ans4 }}</label>
+                    </li>
+                </ul>
+                <input type="hidden" name="question_id{{ ques.id }}" value="{{ ques.id }}">
+                {% endfor %}
+                <div>
+                    <button type="submit" class="button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock attend %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const form = document.getElementById('exam-form');
+    const timerElement = document.getElementById('timer');
+
+    // Function to submit the form
+    const submitForm = () => {
+        form.submit();
+    };
+
+    // Initialize the timer
+    let timeRemaining = 7200; // 2 hours in seconds
+
+    // Function to update the timer display
+    const updateTimer = () => {
+        const hours = Math.floor(timeRemaining / 3600);
+        const minutes = Math.floor((timeRemaining % 3600) / 60);
+        const seconds = timeRemaining % 60;
+        timerElement.textContent = `Time Remaining: ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        if (timeRemaining <= 0) {
+            submitForm();
+        } else {
+            timeRemaining--;
+        }
+    };
+
+    // Start the timer
+    setInterval(updateTimer, 1000);
+    setTimeout(submitForm, 7200000); // Automatically submit after 2 hours
+     window.addEventListener('unload', (event) => {
+        submitForm();
+    });
+    // Listen for beforeunload event to submit the form if the user tries to close the tab or window
+    // window.addEventListener('beforeunload', (event) => {
+    //     event.returnValue = 'Are you sure you want to leave? Your exam will be submitted automatically.';
+    //     submitForm();
+    // });
+});
+</script>
+
+{% endblock exam %}

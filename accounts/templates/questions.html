@@ -1,0 +1,25 @@
+{% extends 'addstudent.html' %}
+{% block details  %}
+
+<style>
+.card{
+    margin-top: 10px;
+}
+ .card .item{
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 0.75rem;
+}
+</style>
+
+        <div class="text-center">
+            <h1 class="mr-2 ml-1 mt-3" style=" letter-spacing: 2px;font-family:fantasy;" >  {{cat.cat}} Questions</h1>
+        </div>
+        <div class="card">
+                {% for question in question %}
+                    <p class="item">{{forloop.counter}} . {{question.question}}</p>
+                {% endfor %}
+          </div>
+        
+{% endblock details  %}
